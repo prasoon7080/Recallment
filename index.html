@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recallment</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #eef4ff, #f8f0ff);
+  color: #222;
+  min-height: 100vh;
+}
+
+header {
+  background: linear-gradient(135deg, #5b5be7, #8b5cf6);
+  color: white;
+  padding: 22px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,.12);
+}
+
+header h1 {
+  font-size: 30px;
+}
+
+header p {
+  margin-top: 5px;
+  opacity: .9;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.stat {
+  background: white;
+  padding: 18px 10px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,.07);
+}
+
+.stat strong {
+  display: block;
+  font-size: 25px;
+  color: #5b5be7;
+}
+
+.box {
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.08);
+  margin-bottom: 18px;
+}
+
+h2 {
+  margin-bottom: 15px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 13px;
+  margin: 7px 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 5px 3px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.primary {
+  background: #5b5be7;
+  color: white;
+  width: 100%;
+}
+
+.secondary {
+  background: #eeeaff;
+  color: #5146c9;
+}
+
+.review-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 15px;
+}
+
+.review-buttons button {
+  flex: 1;
+  min-width: 130px;
+}
+
+.item {
+  background: #f7f7ff;
+  padding: 14px;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+.answer {
+  display: none;
+  margin-top: 12px;
+  padding: 12px;
+  background: #eefbf2;
+  border-radius: 10px;
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.nav button {
+  background: white;
+  color: #5146c9;
+  box-shadow: 0 3px 10px rgba(0,0,0,.07);
+}
+
+.hidden {
+  display: none;
+}
+
+.empty {
+  text-align: center;
+  padding: 25px;
+  color: #777;
+}
+
+@media(max-width:500px) {
+  .dashboard {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .stat {
+    padding: 13px 5px;
+  }
+
+  .stat strong {
+    font-size: 21px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Recallment</h1>
+  <p>Remember anything. Revise at the right time.</p>
+</header>
+
+<div class="container">
+
+  <div class="dashboard">
+    <div class="stat">
+      <strong id="dueCount">0</strong>
+      Due
+    </div>
+    <div class="stat">
+      <strong id="totalCount">0</strong>
+      Total
+    </div>
+    <div class="stat">
+      <strong id="masteredCount">0</strong>
+      Mastered
+    </div>
+  </div>
+
+  <div id="home">
+
+    <div class="box">
+      <h2>➕ Add Something</h2>
+
+      <input id="content"
+        placeholder="What do you want to remember?">
+
+      <textarea id="answer"
+        placeholder="Answer / explanation / notes"></textarea>
+
+      <input id="subject"
+        placeholder="Subject (optional)">
+
+      <input id="topic"
+        placeholder="Topic (optional)">
+
+      <button class="primary" onclick="addItem()">
+        Save for Revision
+      </button>
+    </div>
+
+    <div class="box">
+      <h2>🔄 Revision</h2>
+      <div id="reviewArea">
+        <div class="empty">No revision due right now 🎉</div>
+      </div>
+    </div>
+
+    <div class="nav">
+      <button onclick="showSection('all')">📚 All Items</button>
+      <button onclick="showSection('progress')">📊 Progress</button>
+      <button onclick="showSection('home')">🏠 Home</button>
+    </div>
+
+  </div>
+
+  <div id="all" class="hidden">
+    <div class="box">
+      <h2>📚 All Items</h2>
+      <div id="allItems"></div>
+    </div>
+
+    <div class="nav">
+      <button onclick="showSection('home')">🏠 Home</button>
+      <button onclick="showSection('progress')">📊 Progress</button>
+    </div>
+  </div>
+
+  <div id="progress" class="hidden">
+    <div class="box">
+      <h2>📊 Your Progress</h2>
+      <p id="progressText"></p>
+    </div>
+
+    <div class="nav">
+      <button onclick="showSection('home')">🏠 Home</button>
+      <button onclick="showSection('all')">📚 All Items</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+const SCHEDULE = [
+  10 * 60 * 1000,          // 10 minutes
+  60 * 60 * 1000,           // 1 hour
+  12 * 60 * 60 * 1000,      // 12 hours
+  24 * 60 * 60 * 1000,      // 1 day
+  7 * 24 * 60 * 60 * 1000,  // 7 days
+  30 * 24 * 60 * 60 * 1000  // 30 days
+];
+
+let items = JSON.parse(localStorage.getItem("recallment_items") || "[]");
+
+function save() {
+  localStorage.setItem(
+    "recallment_items",
+    JSON.stringify(items)
+  );
+}
+
+function addItem() {
+
+  const content =
+    document.getElementById("content").value.trim();
+
+  const answer =
+    document.getElementById("answer").value.trim();
+
+  const subject =
+    document.getElementById("subject").value.trim();
+
+  const topic =
+    document.getElementById("topic").value.trim();
+
+  if (!content) {
+    alert("Please add something to remember.");
+    return;
+  }
+
+  const item = {
+    id: Date.now(),
+    content,
+    answer,
+    subject,
+    topic,
+    stage: 0,
+    nextReview: Date.now() + SCHEDULE[0],
+    reviews: 0,
+    mastered: false
+  };
+
+  items.push(item);
+  save();
+
+  document.getElementById("content").value = "";
+  document.getElementById("answer").value = "";
+  document.getElementById("subject").value = "";
+  document.getElementById("topic").value = "";
+
+  updateUI();
+
+  alert("Saved! Your first revision is after 10 minutes.");
+}
+
+function dueItems() {
+  return items.filter(item =>
+    !item.mastered &&
+    item.nextReview <= Date.now()
+  );
+}
+
+function showSection(section) {
+
+  ["home", "all", "progress"].forEach(id => {
+    document.getElementById(id).classList.add("hidden");
+  });
+
+  document.getElementById(section).classList.remove("hidden");
+
+  if (section === "all") renderAll();
+  if (section === "progress") renderProgress();
+}
+
+function renderReview() {
+
+  const area = document.getElementById("reviewArea");
+  const due = dueItems();
+
+  if (due.length === 0) {
+    area.innerHTML =
+      '<div class="empty">No revision due right now 🎉</div>';
+    return;
+  }
+
+  const item = due[0];
+
+  area.innerHTML = `
+    <div class="item">
+      <h3>${escapeHTML(item.content)}</h3>
+
+      ${
+        item.subject
+        ? `<p><b>Subject:</b> ${escapeHTML(item.subject)}</p>`
+        : ""
+      }
+
+      ${
+        item.topic
+        ? `<p><b>Topic:</b> ${escapeHTML(item.topic)}</p>`
+        : ""
+      }
+
+      <button class="secondary"
+        onclick="showAnswer(${item.id})">
+        👀 Show Answer
+      </button>
+
+      <div id="answer-${item.id}" class="answer">
+        ${escapeHTML(item.answer || "No answer added.")}
+      </div>
+
+      <div class="review-buttons">
+
+        <button onclick="review(${item.id}, 'forgot')">
+          ❌ भूल गया<br>
+          <small>10 मिनट</small>
+        </button>
+
+        <button onclick="review(${item.id}, 'hard')">
+          🤔 मुश्किल था<br>
+          <small>Next interval</small>
+        </button>
+
+        <button onclick="review(${item.id}, 'remember')">
+          🙂 याद था<br>
+          <small>Next interval</small>
+        </button>
+
+        <button onclick="review(${item.id}, 'easy')">
+          ✅ बहुत अच्छे से याद था<br>
+          <small>3 दिन</small>
+        </button>
+
+      </div>
+    </div>
+  `;
+}
+
+function showAnswer(id) {
+
+  const el = document.getElementById("answer-" + id);
+
+  if (el.style.display === "block") {
+    el.style.display = "none";
+  } else {
+    el.style.display = "block";
+  }
+}
+
+function review(id, result) {
+
+  const item = items.find(x => x.id === id);
+
+  if (!item) return;
+
+  item.reviews++;
+
+  if (result === "forgot") {
+
+    item.stage = 0;
+    item.nextReview =
+      Date.now() + SCHEDULE[0];
+
+  } else if (result === "easy") {
+
+    // Special jump: 3 days
+    item.nextReview =
+      Date.now() + 3 * 24 * 60 * 60 * 1000;
+
+    item.stage = Math.min(
+      item.stage + 1,
+      SCHEDULE.length - 1
+    );
+
+  } else {
+
+    item.stage = Math.min(
+      item.stage + 1,
+      SCHEDULE.length - 1
+    );
+
+    item.nextReview =
+      Date.now() + SCHEDULE[item.stage];
+
+    if (item.stage === SCHEDULE.length - 1) {
+      item.mastered = true;
+    }
+  }
+
+  save();
+  updateUI();
+}
+
+function renderAll() {
+
+  const area = document.getElementById("allItems");
+
+  if (items.length === 0) {
+    area.innerHTML =
+      '<div class="empty">Nothing added yet.</div>';
+    return;
+  }
+
+  area.innerHTML = items.map(item => {
+
+    const next =
+      item.mastered
+      ? "Mastered 🎉"
+      : new Date(item.nextReview).toLocaleString();
+
+    return `
+      <div class="item">
+        <h3>${escapeHTML(item.content)}</h3>
+
+        ${
+          item.subject
+          ? `<p>📘 ${escapeHTML(item.subject)}</p>`
+          : ""
+        }
+
+        ${
+          item.topic
+          ? `<p>📌 ${escapeHTML(item.topic)}</p>`
+          : ""
+        }
+
+        <p>🔄 Reviews: ${item.reviews}</p>
+        <p>⏰ Next: ${next}</p>
+      </div>
+    `;
+
+  }).join("");
+}
+
+function renderProgress() {
+
+  const total = items.length;
+
+  const mastered =
+    items.filter(x => x.mastered).length;
+
+  const due = dueItems().length;
+
+  document.getElementById("progressText").innerHTML = `
+    <b>Total items:</b> ${total}<br><br>
+    <b>Mastered:</b> ${mastered}<br><br>
+    <b>Due now:</b> ${due}<br><br>
+    <b>Total revisions:</b>
+    ${items.reduce((sum, x) => sum + x.reviews, 0)}
+  `;
+}
+
+function updateUI() {
+
+  document.getElementById("dueCount").textContent =
+    dueItems().length;
+
+  document.getElementById("totalCount").textContent =
+    items.length;
+
+  document.getElementById("masteredCount").textContent =
+    items.filter(x => x.mastered).length;
+
+  renderReview();
+}
+
+function escapeHTML(text) {
+
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+updateUI();
+
+</script>
+
+</body>
+</html>
