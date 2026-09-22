@@ -1,176 +1,351 @@
+
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Recallment</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-body {
-  background: linear-gradient(135deg, #eef4ff, #f8f0ff);
-  color: #222;
-  min-height: 100vh;
+body{
+  font-family:Georgia,"Times New Roman",serif;
+  background:#f5f1e8;
+  color:#17243a;
+  min-height:100vh;
 }
 
-header {
-  background: linear-gradient(135deg, #5b5be7, #8b5cf6);
-  color: white;
-  padding: 22px;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,.12);
+header{
+  background:#10233f;
+  color:#d9b45b;
+  text-align:center;
+  padding:30px 20px 26px;
+  border-bottom:4px solid #c9a24e;
 }
 
-header h1 {
-  font-size: 30px;
+.logo{
+  width:105px;
+  height:105px;
+  margin:0 auto 14px;
+  border:2px solid #d9b45b;
+  border-radius:50%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
 }
 
-header p {
-  margin-top: 5px;
-  opacity: .9;
+.logo-r{
+  font-size:48px;
+  font-weight:bold;
+  line-height:45px;
 }
 
-.container {
-  max-width: 700px;
-  margin: auto;
-  padding: 20px;
+.logo-book{
+  font-size:22px;
+  line-height:20px;
 }
 
-.dashboard {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 20px;
+header h1{
+  font-size:34px;
+  letter-spacing:4px;
+  text-transform:uppercase;
 }
 
-.stat {
-  background: white;
-  padding: 18px 10px;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,.07);
+.tagline{
+  margin-top:8px;
+  color:#f0dfad;
+  font-size:15px;
+  letter-spacing:1px;
 }
 
-.stat strong {
-  display: block;
-  font-size: 25px;
-  color: #5b5be7;
+.container{
+  width:100%;
+  max-width:760px;
+  margin:auto;
+  padding:22px 16px 40px;
 }
 
-.box {
-  background: white;
-  padding: 20px;
-  border-radius: 18px;
-  box-shadow: 0 5px 20px rgba(0,0,0,.08);
-  margin-bottom: 18px;
+.dashboard{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-bottom:20px;
 }
 
-h2 {
-  margin-bottom: 15px;
+.stat{
+  background:#fffdf8;
+  border:1px solid #d8c89f;
+  border-radius:12px;
+  padding:17px 8px;
+  text-align:center;
+  box-shadow:0 4px 12px rgba(16,35,63,.08);
 }
 
-input, textarea, select {
-  width: 100%;
-  padding: 13px;
-  margin: 7px 0;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  font-size: 15px;
+.stat strong{
+  display:block;
+  font-size:28px;
+  color:#10233f;
+  margin-bottom:4px;
 }
 
-textarea {
-  min-height: 100px;
-  resize: vertical;
+.stat span{
+  font-size:14px;
+  color:#756a52;
+  text-transform:uppercase;
+  letter-spacing:1px;
 }
 
-button {
-  border: none;
-  border-radius: 10px;
-  padding: 12px 16px;
-  margin: 5px 3px;
-  font-size: 15px;
-  cursor: pointer;
-  font-weight: bold;
+.box{
+  background:#fffdf8;
+  border:1px solid #d8c89f;
+  border-radius:15px;
+  padding:22px;
+  margin-bottom:18px;
+  box-shadow:0 5px 18px rgba(16,35,63,.08);
 }
 
-.primary {
-  background: #5b5be7;
-  color: white;
-  width: 100%;
+.box-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+  color:#10233f;
 }
 
-.secondary {
-  background: #eeeaff;
-  color: #5146c9;
+.box-title .symbol{
+  color:#b38a32;
+  font-size:25px;
 }
 
-.review-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 15px;
+h2{
+  font-size:23px;
+  letter-spacing:.5px;
 }
 
-.review-buttons button {
-  flex: 1;
-  min-width: 130px;
+input,textarea{
+  width:100%;
+  padding:14px;
+  margin:6px 0;
+  border:1px solid #d5c9aa;
+  border-radius:9px;
+  background:#fffefa;
+  color:#17243a;
+  font-family:Georgia,serif;
+  font-size:15px;
+  outline:none;
 }
 
-.item {
-  background: #f7f7ff;
-  padding: 14px;
-  border-radius: 12px;
-  margin-top: 10px;
+input:focus,textarea:focus{
+  border-color:#b38a32;
+  box-shadow:0 0 0 2px rgba(179,138,50,.12);
 }
 
-.answer {
-  display: none;
-  margin-top: 12px;
-  padding: 12px;
-  background: #eefbf2;
-  border-radius: 10px;
+textarea{
+  min-height:105px;
+  resize:vertical;
 }
 
-.nav {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-top: 15px;
+.primary{
+  width:100%;
+  border:none;
+  padding:14px;
+  margin-top:10px;
+  border-radius:9px;
+  background:#10233f;
+  color:#e5c66f;
+  font-family:Georgia,serif;
+  font-size:16px;
+  font-weight:bold;
+  letter-spacing:.5px;
+  cursor:pointer;
 }
 
-.nav button {
-  background: white;
-  color: #5146c9;
-  box-shadow: 0 3px 10px rgba(0,0,0,.07);
+.primary:active{
+  transform:scale(.99);
 }
 
-.hidden {
-  display: none;
+.secondary{
+  border:1px solid #c9a24e;
+  background:#f8f0dc;
+  color:#10233f;
+  padding:10px 14px;
+  border-radius:8px;
+  font-family:Georgia,serif;
+  cursor:pointer;
 }
 
-.empty {
-  text-align: center;
-  padding: 25px;
-  color: #777;
+.review-card{
+  border:1px solid #d8c89f;
+  border-left:5px solid #b38a32;
+  background:#faf7ef;
+  border-radius:10px;
+  padding:18px;
 }
 
-@media(max-width:500px) {
-  .dashboard {
-    grid-template-columns: repeat(3, 1fr);
+.review-card h3{
+  font-size:21px;
+  margin-bottom:10px;
+  color:#10233f;
+}
+
+.meta{
+  color:#766b55;
+  font-size:14px;
+  margin:5px 0;
+}
+
+.answer{
+  display:none;
+  margin:14px 0;
+  padding:14px;
+  border-radius:8px;
+  background:#f1ead7;
+  border:1px solid #ded1ad;
+  line-height:1.6;
+}
+
+.review-buttons{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+  margin-top:15px;
+}
+
+.review-buttons button{
+  padding:12px 7px;
+  border-radius:8px;
+  border:1px solid #d1c39f;
+  background:white;
+  color:#17243a;
+  font-family:Georgia,serif;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.review-buttons button:hover{
+  background:#f4ecd9;
+}
+
+.review-buttons small{
+  display:block;
+  margin-top:4px;
+  color:#8b7954;
+}
+
+.nav{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-top:18px;
+}
+
+.nav button{
+  border:1px solid #d2c29b;
+  background:#fffdf8;
+  color:#10233f;
+  padding:13px 5px;
+  border-radius:9px;
+  font-family:Georgia,serif;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.nav button:hover{
+  background:#f1e8d3;
+}
+
+.item{
+  background:#faf7ef;
+  border:1px solid #ddd0ae;
+  border-radius:10px;
+  padding:15px;
+  margin-top:10px;
+}
+
+.item h3{
+  color:#10233f;
+  margin-bottom:7px;
+}
+
+.empty{
+  text-align:center;
+  padding:28px 10px;
+  color:#7b715f;
+  font-size:16px;
+}
+
+.hidden{
+  display:none;
+}
+
+.progress-line{
+  height:10px;
+  background:#e5ddc9;
+  border-radius:10px;
+  overflow:hidden;
+  margin:14px 0;
+}
+
+.progress-fill{
+  height:100%;
+  background:#b38a32;
+  width:0%;
+  transition:width .4s;
+}
+
+footer{
+  text-align:center;
+  color:#81765f;
+  font-size:13px;
+  padding:5px 0 25px;
+}
+
+@media(max-width:500px){
+
+  header{
+    padding:24px 15px;
   }
 
-  .stat {
-    padding: 13px 5px;
+  .logo{
+    width:88px;
+    height:88px;
   }
 
-  .stat strong {
-    font-size: 21px;
+  .logo-r{
+    font-size:40px;
+  }
+
+  header h1{
+    font-size:27px;
+    letter-spacing:3px;
+  }
+
+  .dashboard{
+    gap:8px;
+  }
+
+  .stat{
+    padding:14px 4px;
+  }
+
+  .stat strong{
+    font-size:23px;
+  }
+
+  .stat span{
+    font-size:11px;
+  }
+
+  .box{
+    padding:17px;
   }
 }
 </style>
@@ -179,375 +354,753 @@ button {
 <body>
 
 <header>
+
+  <div class="logo">
+    <div class="logo-r">R</div>
+    <div class="logo-book">⌁⌁</div>
+  </div>
+
   <h1>Recallment</h1>
-  <p>Remember anything. Revise at the right time.</p>
+
+  <p class="tagline">
+    Remember • Revise • Retain
+  </p>
+
 </header>
+
 
 <div class="container">
 
   <div class="dashboard">
+
     <div class="stat">
       <strong id="dueCount">0</strong>
-      Due
+      <span>Due</span>
     </div>
+
     <div class="stat">
       <strong id="totalCount">0</strong>
-      Total
+      <span>Total</span>
     </div>
+
     <div class="stat">
       <strong id="masteredCount">0</strong>
-      Mastered
+      <span>Mastered</span>
     </div>
+
   </div>
+
+
+  <!-- HOME -->
 
   <div id="home">
 
     <div class="box">
-      <h2>➕ Add Something</h2>
 
-      <input id="content"
-        placeholder="What do you want to remember?">
+      <div class="box-title">
+        <span class="symbol">✦</span>
+        <h2>Add Something</h2>
+      </div>
 
-      <textarea id="answer"
-        placeholder="Answer / explanation / notes"></textarea>
+      <input
+        id="content"
+        placeholder="What do you want to remember?"
+      >
 
-      <input id="subject"
-        placeholder="Subject (optional)">
+      <textarea
+        id="answer"
+        placeholder="Answer / explanation / notes"
+      ></textarea>
 
-      <input id="topic"
-        placeholder="Topic (optional)">
+      <input
+        id="subject"
+        placeholder="Subject (optional)"
+      >
+
+      <input
+        id="topic"
+        placeholder="Topic (optional)"
+      >
 
       <button class="primary" onclick="addItem()">
         Save for Revision
       </button>
+
     </div>
+
 
     <div class="box">
-      <h2>🔄 Revision</h2>
-      <div id="reviewArea">
-        <div class="empty">No revision due right now 🎉</div>
+
+      <div class="box-title">
+        <span class="symbol">↻</span>
+        <h2>Revision</h2>
       </div>
+
+      <div id="reviewArea"></div>
+
     </div>
 
+
     <div class="nav">
-      <button onclick="showSection('all')">📚 All Items</button>
-      <button onclick="showSection('progress')">📊 Progress</button>
-      <button onclick="showSection('home')">🏠 Home</button>
+
+      <button onclick="showSection('all')">
+        All Items
+      </button>
+
+      <button onclick="showSection('progress')">
+        Progress
+      </button>
+
+      <button onclick="showSection('home')">
+        Home
+      </button>
+
     </div>
 
   </div>
+
+
+  <!-- ALL ITEMS -->
 
   <div id="all" class="hidden">
+
     <div class="box">
-      <h2>📚 All Items</h2>
+
+      <div class="box-title">
+        <span class="symbol">§</span>
+        <h2>All Items</h2>
+      </div>
+
       <div id="allItems"></div>
+
     </div>
 
     <div class="nav">
-      <button onclick="showSection('home')">🏠 Home</button>
-      <button onclick="showSection('progress')">📊 Progress</button>
+
+      <button onclick="showSection('home')">
+        Home
+      </button>
+
+      <button onclick="showSection('progress')">
+        Progress
+      </button>
+
     </div>
+
   </div>
+
+
+  <!-- PROGRESS -->
 
   <div id="progress" class="hidden">
+
     <div class="box">
-      <h2>📊 Your Progress</h2>
-      <p id="progressText"></p>
+
+      <div class="box-title">
+        <span class="symbol">◆</span>
+        <h2>Your Progress</h2>
+      </div>
+
+      <div id="progressText"></div>
+
+      <div class="progress-line">
+        <div
+          class="progress-fill"
+          id="progressFill">
+        </div>
+      </div>
+
     </div>
 
     <div class="nav">
-      <button onclick="showSection('home')">🏠 Home</button>
-      <button onclick="showSection('all')">📚 All Items</button>
+
+      <button onclick="showSection('home')">
+        Home
+      </button>
+
+      <button onclick="showSection('all')">
+        All Items
+      </button>
+
     </div>
+
   </div>
 
+  <footer>
+    Recallment · Remember • Revise • Retain
+  </footer>
+
 </div>
+
 
 <script>
 
 const SCHEDULE = [
-  10 * 60 * 1000,          // 10 minutes
-  60 * 60 * 1000,           // 1 hour
-  12 * 60 * 60 * 1000,      // 12 hours
-  24 * 60 * 60 * 1000,      // 1 day
-  7 * 24 * 60 * 60 * 1000,  // 7 days
-  30 * 24 * 60 * 60 * 1000  // 30 days
+
+  10 * 60 * 1000,
+
+  60 * 60 * 1000,
+
+  12 * 60 * 60 * 1000,
+
+  24 * 60 * 60 * 1000,
+
+  7 * 24 * 60 * 60 * 1000,
+
+  30 * 24 * 60 * 60 * 1000
+
 ];
 
-let items = JSON.parse(localStorage.getItem("recallment_items") || "[]");
 
-function save() {
+let items =
+  JSON.parse(
+    localStorage.getItem("recallment_items") || "[]"
+  );
+
+
+function save(){
+
   localStorage.setItem(
     "recallment_items",
     JSON.stringify(items)
   );
+
 }
 
-function addItem() {
+
+function addItem(){
 
   const content =
-    document.getElementById("content").value.trim();
+    document.getElementById("content")
+    .value.trim();
 
   const answer =
-    document.getElementById("answer").value.trim();
+    document.getElementById("answer")
+    .value.trim();
 
   const subject =
-    document.getElementById("subject").value.trim();
+    document.getElementById("subject")
+    .value.trim();
 
   const topic =
-    document.getElementById("topic").value.trim();
+    document.getElementById("topic")
+    .value.trim();
 
-  if (!content) {
+
+  if(!content){
+
     alert("Please add something to remember.");
+
     return;
+
   }
 
+
   const item = {
-    id: Date.now(),
-    content,
-    answer,
-    subject,
-    topic,
-    stage: 0,
-    nextReview: Date.now() + SCHEDULE[0],
-    reviews: 0,
-    mastered: false
+
+    id:Date.now(),
+
+    content:content,
+
+    answer:answer,
+
+    subject:subject,
+
+    topic:topic,
+
+    stage:0,
+
+    nextReview:
+      Date.now() + SCHEDULE[0],
+
+    reviews:0,
+
+    mastered:false
+
   };
 
+
   items.push(item);
+
   save();
 
-  document.getElementById("content").value = "";
-  document.getElementById("answer").value = "";
-  document.getElementById("subject").value = "";
-  document.getElementById("topic").value = "";
+
+  document.getElementById("content").value="";
+  document.getElementById("answer").value="";
+  document.getElementById("subject").value="";
+  document.getElementById("topic").value="";
+
 
   updateUI();
 
-  alert("Saved! Your first revision is after 10 minutes.");
+
+  alert(
+    "Saved successfully!\n\nFirst revision: after 10 minutes."
+  );
+
 }
 
-function dueItems() {
+
+function dueItems(){
+
   return items.filter(item =>
+
     !item.mastered &&
     item.nextReview <= Date.now()
+
   );
+
 }
 
-function showSection(section) {
 
-  ["home", "all", "progress"].forEach(id => {
-    document.getElementById(id).classList.add("hidden");
+function showSection(section){
+
+  ["home","all","progress"].forEach(id => {
+
+    document
+      .getElementById(id)
+      .classList.add("hidden");
+
   });
 
-  document.getElementById(section).classList.remove("hidden");
 
-  if (section === "all") renderAll();
-  if (section === "progress") renderProgress();
+  document
+    .getElementById(section)
+    .classList.remove("hidden");
+
+
+  if(section==="all")
+    renderAll();
+
+
+  if(section==="progress")
+    renderProgress();
+
 }
 
-function renderReview() {
 
-  const area = document.getElementById("reviewArea");
-  const due = dueItems();
+function renderReview(){
 
-  if (due.length === 0) {
+  const area =
+    document.getElementById("reviewArea");
+
+
+  const due =
+    dueItems();
+
+
+  if(due.length===0){
+
     area.innerHTML =
-      '<div class="empty">No revision due right now 🎉</div>';
+      `<div class="empty">
+        No revision due right now.
+      </div>`;
+
     return;
+
   }
 
-  const item = due[0];
 
-  area.innerHTML = `
-    <div class="item">
-      <h3>${escapeHTML(item.content)}</h3>
+  const item=due[0];
+
+
+  area.innerHTML=`
+
+    <div class="review-card">
+
+      <h3>
+        ${escapeHTML(item.content)}
+      </h3>
 
       ${
         item.subject
-        ? `<p><b>Subject:</b> ${escapeHTML(item.subject)}</p>`
+        ? `<div class="meta">
+             Subject: ${escapeHTML(item.subject)}
+           </div>`
         : ""
       }
 
       ${
         item.topic
-        ? `<p><b>Topic:</b> ${escapeHTML(item.topic)}</p>`
+        ? `<div class="meta">
+             Topic: ${escapeHTML(item.topic)}
+           </div>`
         : ""
       }
 
-      <button class="secondary"
+
+      <button
+        class="secondary"
         onclick="showAnswer(${item.id})">
-        👀 Show Answer
+
+        Show Answer
+
       </button>
 
-      <div id="answer-${item.id}" class="answer">
-        ${escapeHTML(item.answer || "No answer added.")}
+
+      <div
+        id="answer-${item.id}"
+        class="answer">
+
+        ${escapeHTML(
+          item.answer || "No answer added."
+        )}
+
       </div>
+
 
       <div class="review-buttons">
 
-        <button onclick="review(${item.id}, 'forgot')">
-          ❌ भूल गया<br>
-          <small>10 मिनट</small>
+
+        <button
+          onclick="review(${item.id},'forgot')">
+
+          ❌ भूल गया
+
+          <small>
+            10 मिनट
+          </small>
+
         </button>
 
-        <button onclick="review(${item.id}, 'hard')">
-          🤔 मुश्किल था<br>
-          <small>Next interval</small>
+
+        <button
+          onclick="review(${item.id},'hard')">
+
+          🤔 मुश्किल था
+
+          <small>
+            Next interval
+          </small>
+
         </button>
 
-        <button onclick="review(${item.id}, 'remember')">
-          🙂 याद था<br>
-          <small>Next interval</small>
+
+        <button
+          onclick="review(${item.id},'remember')">
+
+          🙂 याद था
+
+          <small>
+            Next interval
+          </small>
+
         </button>
 
-        <button onclick="review(${item.id}, 'easy')">
-          ✅ बहुत अच्छे से याद था<br>
-          <small>3 दिन</small>
+
+        <button
+          onclick="review(${item.id},'easy')">
+
+          ✅ बहुत अच्छे से याद था
+
+          <small>
+            3 दिन
+          </small>
+
         </button>
+
 
       </div>
+
     </div>
+
   `;
+
 }
 
-function showAnswer(id) {
 
-  const el = document.getElementById("answer-" + id);
+function showAnswer(id){
 
-  if (el.style.display === "block") {
-    el.style.display = "none";
-  } else {
-    el.style.display = "block";
-  }
+  const el =
+    document.getElementById(
+      "answer-"+id
+    );
+
+
+  el.style.display =
+    el.style.display==="block"
+    ? "none"
+    : "block";
+
 }
 
-function review(id, result) {
 
-  const item = items.find(x => x.id === id);
+function review(id,result){
 
-  if (!item) return;
+  const item =
+    items.find(x => x.id===id);
+
+
+  if(!item)
+    return;
+
 
   item.reviews++;
 
-  if (result === "forgot") {
 
-    item.stage = 0;
-    item.nextReview =
-      Date.now() + SCHEDULE[0];
+  if(result==="forgot"){
 
-  } else if (result === "easy") {
-
-    // Special jump: 3 days
-    item.nextReview =
-      Date.now() + 3 * 24 * 60 * 60 * 1000;
-
-    item.stage = Math.min(
-      item.stage + 1,
-      SCHEDULE.length - 1
-    );
-
-  } else {
-
-    item.stage = Math.min(
-      item.stage + 1,
-      SCHEDULE.length - 1
-    );
+    item.stage=0;
 
     item.nextReview =
-      Date.now() + SCHEDULE[item.stage];
+      Date.now()+SCHEDULE[0];
 
-    if (item.stage === SCHEDULE.length - 1) {
-      item.mastered = true;
-    }
+    item.mastered=false;
+
   }
+
+
+  else if(result==="easy"){
+
+    item.nextReview =
+      Date.now() +
+      (3 * 24 * 60 * 60 * 1000);
+
+    item.stage =
+      Math.min(
+        item.stage+1,
+        SCHEDULE.length-1
+      );
+
+  }
+
+
+  else{
+
+    item.stage =
+      Math.min(
+        item.stage+1,
+        SCHEDULE.length-1
+      );
+
+
+    item.nextReview =
+      Date.now() +
+      SCHEDULE[item.stage];
+
+
+    if(
+      item.stage===
+      SCHEDULE.length-1
+    ){
+
+      item.mastered=true;
+
+    }
+
+  }
+
 
   save();
+
   updateUI();
+
 }
 
-function renderAll() {
 
-  const area = document.getElementById("allItems");
+function renderAll(){
 
-  if (items.length === 0) {
-    area.innerHTML =
-      '<div class="empty">Nothing added yet.</div>';
+  const area =
+    document.getElementById("allItems");
+
+
+  if(items.length===0){
+
+    area.innerHTML=
+      `<div class="empty">
+        Nothing added yet.
+      </div>`;
+
     return;
+
   }
 
-  area.innerHTML = items.map(item => {
 
-    const next =
-      item.mastered
-      ? "Mastered 🎉"
-      : new Date(item.nextReview).toLocaleString();
+  area.innerHTML =
+    items.map(item=>{
 
-    return `
-      <div class="item">
-        <h3>${escapeHTML(item.content)}</h3>
+      const next =
+        item.mastered
+        ? "Mastered"
+        : new Date(
+            item.nextReview
+          ).toLocaleString();
 
-        ${
-          item.subject
-          ? `<p>📘 ${escapeHTML(item.subject)}</p>`
-          : ""
-        }
 
-        ${
-          item.topic
-          ? `<p>📌 ${escapeHTML(item.topic)}</p>`
-          : ""
-        }
+      return `
 
-        <p>🔄 Reviews: ${item.reviews}</p>
-        <p>⏰ Next: ${next}</p>
-      </div>
-    `;
+        <div class="item">
 
-  }).join("");
+          <h3>
+            ${escapeHTML(item.content)}
+          </h3>
+
+          ${
+            item.subject
+            ? `<div class="meta">
+                 Subject: ${escapeHTML(item.subject)}
+               </div>`
+            : ""
+          }
+
+          ${
+            item.topic
+            ? `<div class="meta">
+                 Topic: ${escapeHTML(item.topic)}
+               </div>`
+            : ""
+          }
+
+          <div class="meta">
+            Reviews: ${item.reviews}
+          </div>
+
+          <div class="meta">
+            Next: ${next}
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
 }
 
-function renderProgress() {
 
-  const total = items.length;
+function renderProgress(){
 
-  const mastered =
-    items.filter(x => x.mastered).length;
-
-  const due = dueItems().length;
-
-  document.getElementById("progressText").innerHTML = `
-    <b>Total items:</b> ${total}<br><br>
-    <b>Mastered:</b> ${mastered}<br><br>
-    <b>Due now:</b> ${due}<br><br>
-    <b>Total revisions:</b>
-    ${items.reduce((sum, x) => sum + x.reviews, 0)}
-  `;
-}
-
-function updateUI() {
-
-  document.getElementById("dueCount").textContent =
-    dueItems().length;
-
-  document.getElementById("totalCount").textContent =
+  const total =
     items.length;
 
-  document.getElementById("masteredCount").textContent =
-    items.filter(x => x.mastered).length;
+
+  const mastered =
+    items.filter(
+      x=>x.mastered
+    ).length;
+
+
+  const due =
+    dueItems().length;
+
+
+  const revisions =
+    items.reduce(
+      (sum,x)=>
+        sum+x.reviews,
+      0
+    );
+
+
+  const percentage =
+    total===0
+    ? 0
+    : Math.round(
+        mastered/total*100
+      );
+
+
+  document.getElementById(
+    "progressText"
+  ).innerHTML=`
+
+    <p>
+      <b>Total items:</b> ${total}
+    </p>
+
+    <br>
+
+    <p>
+      <b>Mastered:</b> ${mastered}
+    </p>
+
+    <br>
+
+    <p>
+      <b>Due now:</b> ${due}
+    </p>
+
+    <br>
+
+    <p>
+      <b>Total revisions:</b> ${revisions}
+    </p>
+
+    <br>
+
+    <p>
+      <b>Mastery:</b> ${percentage}%
+    </p>
+
+  `;
+
+
+  document.getElementById(
+    "progressFill"
+  ).style.width =
+    percentage+"%";
+
+}
+
+
+function updateUI(){
+
+  document.getElementById(
+    "dueCount"
+  ).textContent =
+    dueItems().length;
+
+
+  document.getElementById(
+    "totalCount"
+  ).textContent =
+    items.length;
+
+
+  document.getElementById(
+    "masteredCount"
+  ).textContent =
+    items.filter(
+      x=>x.mastered
+    ).length;
+
 
   renderReview();
+
 }
 
-function escapeHTML(text) {
+
+function escapeHTML(text){
 
   return String(text)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
 }
+
 
 updateUI();
 
